@@ -2,7 +2,7 @@
 
 **cursor-stack turns Cursor's AI agent from one generic assistant into a team of specialists you can summon on demand.**
 
-Six opinionated workflow skills for [Cursor](https://cursor.com). Plan review, code review, one-command shipping, QA testing, and engineering retrospectives — all as slash commands.
+Seven opinionated workflow skills for [Cursor](https://cursor.com). Plan review, code review, one-command shipping, QA testing, and engineering retrospectives — all as slash commands.
 
 Inspired by [gstack](https://github.com/garrytan/gstack) by Garry Tan (YC). Built for Cursor — no binaries, no build step, just copy and go.
 
@@ -23,6 +23,7 @@ Inspired by [gstack](https://github.com/garrytan/gstack) by Garry Tan (YC). Buil
 | `/ship` | Release engineer | Sync main, run tests, push, open PR. For a ready branch, not for deciding what to build. |
 | `/qa` | QA lead | Systematic QA testing. Diff-aware, full exploration, quick smoke test. Uses Cursor's built-in browser automation. |
 | `/retro` | Engineering manager | Team-aware retro: your deep-dive + per-person praise and growth opportunities. |
+| `/researcher` | Research mode | Gathers domain knowledge, tech options, and codebase context. Run before plan-ceo and plan-eng for better-informed planning. |
 
 ## Demo: one feature, five modes
 
@@ -87,6 +88,7 @@ cp -r ~/.cursor/skills/cursor-stack/code-review ~/.cursor/skills/
 cp -r ~/.cursor/skills/cursor-stack/ship ~/.cursor/skills/
 cp -r ~/.cursor/skills/cursor-stack/qa ~/.cursor/skills/
 cp -r ~/.cursor/skills/cursor-stack/retro ~/.cursor/skills/
+cp -r ~/.cursor/skills/cursor-stack/researcher ~/.cursor/skills/
 ```
 
 ### Option B: Run setup script
@@ -125,18 +127,20 @@ Just mention the skill name in your Cursor chat:
 - "/ship" or "Use ship to land this branch"
 - "/qa" or "Use qa to test localhost:3000"
 - "/retro" or "Use retro for the last week"
+- "/researcher" or "Use researcher to gather info before planning"
 
 Cursor will automatically read the skill and follow its instructions.
 
 ## Your workflow
 
 1. **Describe** the feature idea
-2. **`/plan-ceo`** — Is this the right thing to build?
-3. **`/plan-eng`** — How should it be built?
-4. **Implement** the plan
-5. **`/review`** — Find hidden bugs
-6. **`/ship`** — Land the code
-7. **`/qa`** — Verify it works
+2. **`/researcher`** *(optional)* — Gather domain knowledge and codebase context first. Use for unfamiliar domains or when you want to compare approaches.
+3. **`/plan-ceo`** — Is this the right thing to build?
+4. **`/plan-eng`** — How should it be built?
+5. **Implement** the plan
+6. **`/review`** — Find hidden bugs
+7. **`/ship`** — Land the code
+8. **`/qa`** — Verify it works
 
 ## Plan-CEO and Plan-ENG: The Planning Pipeline
 
@@ -146,6 +150,9 @@ plan-ceo and plan-eng work together as a coherent pipeline. Run them in the same
 
 ```
 User describes feature
+        |
+        v
+   /researcher  (optional: domain knowledge, tech options, codebase map)
         |
         v
    /plan-ceo  (product direction, mode, 10-star version)
@@ -189,7 +196,7 @@ Without it, plan-eng might create a spec that diverges from the product directio
 | Platform | Claude Code | Cursor |
 | Browser QA | Custom ~58MB binary (Bun + Playwright) | Cursor's built-in browser-use |
 | Install | `./setup` builds binary, symlinks | Copy skills, no build |
-| Skills | 8 (includes browse, setup-browser-cookies) | 6 (browse via Cursor native) |
+| Skills | 8 (includes browse, setup-browser-cookies) | 7 (browse via Cursor native; researcher for pre-planning) |
 
 cursor-stack adapts the gstack philosophy for Cursor. Same cognitive modes, Cursor-native implementation.
 

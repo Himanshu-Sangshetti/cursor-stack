@@ -9,6 +9,8 @@ description: Engineering lead planning mode. Creates architecture, data flow dia
 
 Best used in the same chat as plan-ceo so it can consume the product direction.
 
+**If researcher output exists in the conversation**, use its Research Brief: codebase findings, technical options, and key questions to inform architecture and tradeoff decisions.
+
 Assume plan-ceo has been run. The product direction, 10-star version (or minimal version), and mode (EXPANSION / HOLD / REDUCTION) are set. Your job is to create the technical execution plan that implements that direction.
 
 - If plan-ceo output exists in the conversation, use it. Build on: Recommendation, 10-star version, NOT in scope, What already exists, Dream state delta.

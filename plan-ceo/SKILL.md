@@ -33,7 +33,11 @@ Use these to guide all recommendations:
 
 ## Pre-Review: System Audit
 
-Before Step 0, gather context. Run:
+Before Step 0, gather context.
+
+**If researcher output exists in the conversation**, use its Research Brief: codebase findings, domain knowledge, technical options, and key questions. Incorporate into your analysis.
+
+Run:
 
 ```
 git log --oneline -30
