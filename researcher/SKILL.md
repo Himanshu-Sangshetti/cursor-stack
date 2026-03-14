@@ -22,6 +22,8 @@ Run **before** plan-ceo and plan-eng when:
 - The codebase is large and you need a map of what exists
 - You're unsure what's possible or what the tradeoffs are
 
+**Skip** when: well-known domain, small change (bug fix, config tweak), or requirements are clear.
+
 ## Research Process
 
 ### 1. Codebase Research
@@ -118,7 +120,7 @@ Your research brief is consumed by:
 - **plan-ceo**: Uses domain knowledge and key questions to challenge the premise and propose the right scope
 - **plan-eng**: Uses codebase findings and technical options to design the implementation
 
-Run researcher first when the topic is unfamiliar or the decision space is large. In the same chat, then run plan-ceo and plan-eng so they have your research in context.
+**Handoff rule:** Your Research Brief stays in the conversation. plan-ceo and plan-eng read it when run in the same chat. Do not repeat — reference it. Run researcher first when the topic is unfamiliar or the decision space is large. In the same chat, then run plan-ceo and plan-eng so they have your research in context.
 
 ## Remember
 
