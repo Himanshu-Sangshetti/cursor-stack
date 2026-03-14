@@ -12,13 +12,15 @@ cursor-stack skills are Markdown files that Cursor discovers from `~/.cursor/ski
    - **Windows (PowerShell):** `.\setup.ps1`
    - **macOS / Linux:** `./setup`
 2. **Restart Cursor** or open a new chat.
-3. **Invoke the skill** — e.g., type `/plan-ceo` or "Use plan-ceo to review this feature idea".
+3. **Invoke the skill** (e.g., type `/plan-ceo` or "Use plan-ceo to review this feature idea").
 
 Changes to skills in the repo take effect after you re-run setup (skills are copied, not symlinked).
 
 ## How to add a new skill
 
-1. **Create the skill folder** — e.g., `skill-name/`
+See [docs/custom-personas.md](docs/custom-personas.md) for the full guide. Quick version:
+
+1. **Create the skill folder** (e.g., `skill-name/`)
 2. **Add `SKILL.md`** with YAML frontmatter and instructions:
 
 ```markdown
@@ -33,7 +35,7 @@ description: What this skill does. Use when [trigger scenarios].
 ...
 ```
 
-3. **Add to setup scripts** — update `setup.ps1` and `setup` to include the new skill in the list.
+3. **Add to setup scripts**: update `setup.ps1` and `setup` to include the new skill in the list.
 4. **Re-run setup** and test in a new Cursor chat.
 
 ## Skill format (best practices)

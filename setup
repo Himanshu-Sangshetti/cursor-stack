@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# cursor-stack setup — copy skills to ~/.cursor/skills/
+# cursor-stack setup: copy skills to ~/.cursor/skills/
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
