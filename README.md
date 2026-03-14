@@ -2,7 +2,7 @@
 
 **cursor-stack turns Cursor's AI agent from one generic assistant into a team of specialists you can summon on demand.**
 
-Seven opinionated workflow skills for [Cursor](https://cursor.com). Plan review, code review, one-command shipping, QA testing, and engineering retrospectives — all as slash commands.
+Eight opinionated workflow skills for [Cursor](https://cursor.com). Plan review, code review, one-command shipping, QA testing, and engineering retrospectives — all as slash commands.
 
 Inspired by [gstack](https://github.com/garrytan/gstack) by Garry Tan (YC). Built for Cursor — no binaries, no build step, just copy and go.
 
@@ -24,6 +24,7 @@ Inspired by [gstack](https://github.com/garrytan/gstack) by Garry Tan (YC). Buil
 | `/qa` | QA lead | Systematic QA testing. Diff-aware, full exploration, quick smoke test. Uses Cursor's built-in browser automation. |
 | `/retro` | Engineering manager | Team-aware retro: your deep-dive + per-person praise and growth opportunities. |
 | `/researcher` | Research mode | Gathers domain knowledge, tech options, and codebase context. Run before plan-ceo and plan-eng for better-informed planning. |
+| `/workflow` | Workflow orchestrator | Step-by-step guided flow. Built-in: feature, bugfix, hotfix. Or use project-level workflow skills. |
 
 ## Demo: one feature, five modes
 
@@ -89,6 +90,7 @@ cp -r ~/.cursor/skills/cursor-stack/ship ~/.cursor/skills/
 cp -r ~/.cursor/skills/cursor-stack/qa ~/.cursor/skills/
 cp -r ~/.cursor/skills/cursor-stack/retro ~/.cursor/skills/
 cp -r ~/.cursor/skills/cursor-stack/researcher ~/.cursor/skills/
+cp -r ~/.cursor/skills/cursor-stack/workflow ~/.cursor/skills/
 ```
 
 ### Option B: Run setup script
@@ -128,6 +130,7 @@ Just mention the skill name in your Cursor chat:
 - "/qa" or "Use qa to test localhost:3000"
 - "/retro" or "Use retro for the last week"
 - "/researcher" or "Use researcher to gather info before planning"
+- "/workflow" or "Use workflow for guided feature/bugfix/hotfix flow"
 
 Cursor will automatically read the skill and follow its instructions.
 
@@ -141,6 +144,8 @@ Cursor will automatically read the skill and follow its instructions.
 6. **`/review`** — Find hidden bugs
 7. **`/ship`** — Land the code
 8. **`/qa`** — Verify it works
+
+**Or run `/workflow`** for step-by-step guidance through the feature, bugfix, or hotfix flow.
 
 ## Plan-CEO and Plan-ENG: The Planning Pipeline
 
@@ -189,6 +194,46 @@ User describes feature
 
 Without it, plan-eng might create a spec that diverges from the product direction. With it, the technical plan implements exactly what plan-ceo recommended — same scope, same mode (EXPANSION / HOLD / REDUCTION), same deferred work.
 
+## Customization
+
+### Org defaults: Team Rules
+
+For org-wide cursor-stack defaults (Team and Enterprise plans), use [Cursor Team Rules](https://cursor.com/docs/rules) from the dashboard. Admins create rules that apply to all team members. Precedence: Team Rules > Project Rules > User Rules.
+
+Example content: `mainBranch: main`, `testCommand: npm test`, `complexityThreshold: 12`.
+
+### Project overrides: Rules or AGENTS.md
+
+Override cursor-stack behavior per project:
+
+**Option A:** Create `.cursor/rules/cursor-stack.mdc` with Apply Manually. Copy from `templates/cursor-stack.mdc.example`. @mention it when running plan-ceo or plan-eng.
+
+**Option B:** Add a cursor-stack section to your project's `AGENTS.md` (simpler, always in context):
+
+```markdown
+## cursor-stack
+
+- mainBranch: main
+- testCommand: npm test
+- complexityThreshold: 12
+```
+
+### Custom workflows
+
+Add `.cursor/skills/my-workflow/SKILL.md` for custom step sequences. Example: `launch-workflow` that runs researcher → plan-ceo → plan-eng → implement → review → ship → qa. Copy templates from `workflow/assets/` (workflow-feature.md, workflow-bugfix.md, workflow-hotfix.md). Run `/workflow` to discover project workflows; use `/my-workflow` for your custom flow.
+
+## Creating custom personas
+
+In Cursor, **personas are skills**. Each skill defines a "brain" (mindset, process, output format). Creating a new persona = creating a new skill.
+
+**Storage:** Project personas → `.cursor/skills/persona-name/`; Personal → `~/.cursor/skills/`
+
+**Template:** Copy from `templates/persona-template/SKILL.md`. Structure: Mindset, Process, Output Format, Handoff (what feeds into other skills).
+
+**Example:** Add a `security-reviewer` persona that runs before `/ship` for security-sensitive changes. Create `.cursor/skills/security-reviewer/SKILL.md` with security-focused mindset and checklist, then add it to your workflow sequence.
+
+**Workflow integration:** Add your persona to a project workflow skill. E.g., in `launch-workflow`, insert step 5.5: `/security-reviewer` before `/ship`.
+
 ## Comparison with gstack
 
 | Feature | gstack (Claude Code) | cursor-stack (Cursor) |
@@ -196,7 +241,7 @@ Without it, plan-eng might create a spec that diverges from the product directio
 | Platform | Claude Code | Cursor |
 | Browser QA | Custom ~58MB binary (Bun + Playwright) | Cursor's built-in browser-use |
 | Install | `./setup` builds binary, symlinks | Copy skills, no build |
-| Skills | 8 (includes browse, setup-browser-cookies) | 7 (browse via Cursor native; researcher for pre-planning) |
+| Skills | 8 (includes browse, setup-browser-cookies) | 8 (browse via Cursor native; researcher, workflow) |
 
 cursor-stack adapts the gstack philosophy for Cursor. Same cognitive modes, Cursor-native implementation.
 

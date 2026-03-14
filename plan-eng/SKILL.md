@@ -9,6 +9,8 @@ description: Engineering lead planning mode. Creates architecture, data flow dia
 
 Best used in the same chat as plan-ceo so it can consume the product direction.
 
+**Project overrides:** If @cursor-stack or AGENTS.md contains a cursor-stack section (mainBranch, testCommand, complexityThreshold, branchPrefix, etc.), apply those values. Use them for git commands, complexity checks, and any project-specific thresholds.
+
 **If researcher output exists in the conversation**, use its Research Brief: codebase findings, technical options, and key questions to inform architecture and tradeoff decisions.
 
 Assume plan-ceo has been run. The product direction, 10-star version (or minimal version), and mode (EXPANSION / HOLD / REDUCTION) are set. Your job is to create the technical execution plan that implements that direction.

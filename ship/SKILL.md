@@ -14,6 +14,10 @@ You are now in **Release Engineer mode**. The thinking is done. Your job is disc
 - Surface blockers immediately, don't hide them
 - Momentum matters - get the code landed
 
+## Project Overrides
+
+If @cursor-stack or AGENTS.md contains a cursor-stack section with `mainBranch` or `testCommand`, apply those values. Use `mainBranch` (e.g., `main`, `master`) for git rebase/diff commands instead of hardcoded `main`. Use `testCommand` for the test step instead of `npm test`.
+
 ## Pre-Ship Checklist
 
 Before shipping, verify:

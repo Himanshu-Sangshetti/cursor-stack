@@ -13,7 +13,7 @@ if (-not (Test-Path $SkillsDir)) {
     New-Item -ItemType Directory -Path $SkillsDir -Force | Out-Null
 }
 
-$skills = @("plan-ceo", "plan-eng", "code-review", "ship", "qa", "retro", "researcher")
+$skills = @("plan-ceo", "plan-eng", "code-review", "ship", "qa", "retro", "researcher", "workflow")
 foreach ($skill in $skills) {
     $skillPath = Join-Path $ScriptDir $skill
     $skillMd = Join-Path $skillPath "SKILL.md"
@@ -26,4 +26,4 @@ foreach ($skill in $skills) {
 Write-Host ""
 Write-Host "Done. Restart Cursor or open a new chat to use the skills."
 Write-Host ""
-Write-Host "Try: /plan-ceo, /plan-eng, /review, /ship, /qa, /retro, /researcher"
+Write-Host "Try: /plan-ceo, /plan-eng, /review, /ship, /qa, /retro, /researcher, /workflow"

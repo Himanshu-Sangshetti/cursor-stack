@@ -12,7 +12,7 @@ echo ""
 
 mkdir -p "$SKILLS_DIR"
 
-for skill in plan-ceo plan-eng code-review ship qa retro researcher; do
+for skill in plan-ceo plan-eng code-review ship qa retro researcher workflow; do
   if [ -d "$SCRIPT_DIR/$skill" ] && [ -f "$SCRIPT_DIR/$skill/SKILL.md" ]; then
     cp -r "$SCRIPT_DIR/$skill" "$SKILLS_DIR/"
     echo "  Installed: $skill"
@@ -22,4 +22,4 @@ done
 echo ""
 echo "Done. Restart Cursor or open a new chat to use the skills."
 echo ""
-echo "Try: /plan-ceo, /plan-eng, /review, /ship, /qa, /retro, /researcher"
+echo "Try: /plan-ceo, /plan-eng, /review, /ship, /qa, /retro, /researcher, /workflow"

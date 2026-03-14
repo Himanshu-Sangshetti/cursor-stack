@@ -35,6 +35,8 @@ Use these to guide all recommendations:
 
 Before Step 0, gather context.
 
+**Project overrides:** If @cursor-stack or AGENTS.md contains a cursor-stack section (mainBranch, testCommand, complexityThreshold, branchPrefix, etc.), apply those values. Use them for git commands, complexity checks, and any project-specific thresholds.
+
 **If researcher output exists in the conversation**, use its Research Brief: codebase findings, domain knowledge, technical options, and key questions. Incorporate into your analysis.
 
 Run:

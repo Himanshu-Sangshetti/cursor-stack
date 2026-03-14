@@ -1,0 +1,37 @@
+---
+description: cursor-stack project overrides
+alwaysApply: false
+globs:
+---
+
+# cursor-stack overrides
+
+Use this rule to customize cursor-stack behavior for your project. @mention it when running plan-ceo or plan-eng (e.g., "@cursor-stack" in chat).
+
+## Override options
+
+- **mainBranch**: Default branch name (e.g., `main`, `master`)
+- **testCommand**: Command to run tests (e.g., `npm test`, `pytest`)
+- **complexityThreshold**: Max files before suggesting scope reduction (e.g., `12`)
+- **branchPrefix**: Prefix for feature branches (e.g., `feat/`, `feature/`)
+
+## Example
+
+```
+mainBranch: main
+testCommand: npm test
+complexityThreshold: 12
+branchPrefix: feat/
+```
+
+## Alternative: AGENTS.md
+
+For simpler setup, add a cursor-stack section to your project's AGENTS.md:
+
+```markdown
+## cursor-stack
+
+- mainBranch: main
+- testCommand: npm test
+- complexityThreshold: 12
+```

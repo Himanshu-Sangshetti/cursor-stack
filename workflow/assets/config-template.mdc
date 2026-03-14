@@ -1,0 +1,25 @@
+---
+description: cursor-stack project overrides
+alwaysApply: false
+globs:
+---
+
+# cursor-stack overrides
+
+Copy this file to `.cursor/rules/cursor-stack.mdc` in your project. @mention it when running plan-ceo or plan-eng.
+
+## Override options
+
+- **mainBranch**: Default branch name (e.g., `main`, `master`)
+- **testCommand**: Command to run tests (e.g., `npm test`, `pytest`)
+- **complexityThreshold**: Max files before suggesting scope reduction (e.g., `12`)
+- **branchPrefix**: Prefix for feature branches (e.g., `feat/`, `feature/`)
+
+## Example
+
+```
+mainBranch: main
+testCommand: npm test
+complexityThreshold: 12
+branchPrefix: feat/
+```
