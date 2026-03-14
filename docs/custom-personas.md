@@ -44,7 +44,7 @@ description: Security-focused code review. Use when changes touch auth, data, or
 ## Skill format best practices
 
 - **name:** Lowercase, hyphens only. Must match the folder name.
-- **description:** Include WHAT and WHEN. Use trigger terms so Cursor can suggest the skill.
+- **description:** Include WHAT and WHEN. Use trigger terms so Cursor can suggest the skill. If the description contains colons or square brackets, wrap it in quotes: `description: "Your text here"`.
 - **Structure:** Mindset, Process, Output Format. Use checklists for multi-step workflows.
 - **Progressive disclosure:** Put essentials in SKILL.md; move details to `references/` or `assets/`.
 

@@ -1,0 +1,2 @@
+# Ensure bash setup script has LF for Unix compatibility
+setup text eol=lf
