@@ -1,6 +1,6 @@
 ---
 name: my-persona
-description: [What this persona does]. Use when [trigger scenarios].
+description: "What this persona does. Use when [trigger scenarios]."
 ---
 
 # My Persona

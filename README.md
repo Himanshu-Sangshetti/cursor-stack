@@ -65,41 +65,29 @@ This is not a prompt pack for beginners. It is an operating system for people wh
 
 **Requirements:** [Cursor](https://cursor.com) with Agent/Skills support.
 
-### Option A: Clone to skills directory (recommended)
-
-```bash
-git clone https://github.com/Himanshu-Sangshetti/cursor-stack.git ~/.cursor/skills/cursor-stack
-
-# Copy each skill so Cursor discovers them
-cp -r ~/.cursor/skills/cursor-stack/plan-ceo ~/.cursor/skills/
-cp -r ~/.cursor/skills/cursor-stack/plan-eng ~/.cursor/skills/
-cp -r ~/.cursor/skills/cursor-stack/code-review ~/.cursor/skills/
-cp -r ~/.cursor/skills/cursor-stack/ship ~/.cursor/skills/
-cp -r ~/.cursor/skills/cursor-stack/qa ~/.cursor/skills/
-cp -r ~/.cursor/skills/cursor-stack/retro ~/.cursor/skills/
-cp -r ~/.cursor/skills/cursor-stack/researcher ~/.cursor/skills/
-cp -r ~/.cursor/skills/cursor-stack/workflow ~/.cursor/skills/
-```
-
-### Option B: Run setup script
+One command installs all 8 skills. Restart Cursor (or open a new chat) when done.
 
 **macOS / Linux:**
 ```bash
-git clone https://github.com/Himanshu-Sangshetti/cursor-stack.git /tmp/cursor-stack
-cd /tmp/cursor-stack
-./setup
+git clone https://github.com/Himanshu-Sangshetti/cursor-stack.git /tmp/cursor-stack && cd /tmp/cursor-stack && ./setup
 ```
 
 **Windows (PowerShell):**
 ```powershell
-git clone https://github.com/Himanshu-Sangshetti/cursor-stack.git $env:TEMP\cursor-stack
-cd $env:TEMP\cursor-stack
-.\setup.ps1
+git clone https://github.com/Himanshu-Sangshetti/cursor-stack.git $env:TEMP\cursor-stack; cd $env:TEMP\cursor-stack; .\setup.ps1
 ```
 
-### Option C: Project-level install
+The setup script copies skills to `~/.cursor/skills/`. You can delete the cloned folder after install.
 
-Copy skills into your project's `.cursor/skills/` so teammates get them too. See [Customization](docs/customization.md#project-level-install) for project setup.
+### Other install options
+
+**Clone to skills directory** (keep repo for updates):
+```bash
+git clone https://github.com/Himanshu-Sangshetti/cursor-stack.git ~/.cursor/skills/cursor-stack
+cd ~/.cursor/skills/cursor-stack && ./setup
+```
+
+**Project-level** (share with teammates): Copy skills into your project's `.cursor/skills/`. See [Customization](docs/customization.md#project-level-install).
 
 ## How to use
 

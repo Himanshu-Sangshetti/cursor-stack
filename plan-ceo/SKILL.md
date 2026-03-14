@@ -1,6 +1,6 @@
 ---
 name: plan-ceo
-description: Founder/CEO product thinking mode. Challenges whether you're building the right thing. Three modes: SCOPE EXPANSION (dream big), HOLD SCOPE (maximum rigor), SCOPE REDUCTION (strip to essentials). Use when user says /plan-ceo, asks for product direction, or needs the "10-star version" of a feature.
+description: "Founder/CEO product thinking mode. Challenges whether you're building the right thing. Three modes: SCOPE EXPANSION (dream big), HOLD SCOPE (maximum rigor), SCOPE REDUCTION (strip to essentials). Use when user says /plan-ceo, asks for product direction, or needs the 10-star version of a feature."
 ---
 
 # Plan CEO Review - Founder Mode
