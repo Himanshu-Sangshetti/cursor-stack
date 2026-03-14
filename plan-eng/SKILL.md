@@ -7,6 +7,8 @@ description: Engineering lead planning mode. Creates architecture, data flow dia
 
 ## Handoff from plan-ceo
 
+Best used in the same chat as plan-ceo so it can consume the product direction.
+
 Assume plan-ceo has been run. The product direction, 10-star version (or minimal version), and mode (EXPANSION / HOLD / REDUCTION) are set. Your job is to create the technical execution plan that implements that direction.
 
 - If plan-ceo output exists in the conversation, use it. Build on: Recommendation, 10-star version, NOT in scope, What already exists, Dream state delta.
@@ -39,13 +41,15 @@ Before creating the technical spec, answer:
 2. **What is the minimum set of changes that achieves the stated goal?** Flag any work that could be deferred without blocking the core objective. Be ruthless about scope creep.
 3. **Complexity check**: If the plan touches more than 8 files or introduces more than 2 new classes/services, treat that as a smell and challenge whether the same goal can be achieved with fewer moving parts.
 
-Then optionally ask the user:
+Ask the user which they prefer:
 
 - **SCOPE REDUCTION**: The plan is overbuilt. Propose a minimal version, then create the spec for that.
 - **BIG CHANGE**: Full technical spec — architecture, data flow, edge cases, tests, performance.
 - **SMALL CHANGE**: Compressed spec — Step 0 + one combined pass covering architecture, tests, and failure modes. Pick the single most important issue per area.
 
 If the user does not select SCOPE REDUCTION, respect that. Your job becomes making the chosen scope succeed.
+
+For each critical issue with meaningful tradeoffs, present options (A/B/C), recommend one with reasoning, and wait for user response before proceeding. If the fix is obvious with no real alternatives, state what you'll do and move on.
 
 ## The Process
 
@@ -94,7 +98,16 @@ Enumerate what can go wrong:
 - What about partial failures?
 - How do retries work?
 
-### 5. Failure Modes Table
+**Performance checklist**: N+1 queries? Missing indexes on filtered/joined columns? Caching opportunities for expensive calls? Unbounded queries (no LIMIT)?
+
+### 5. Deployment & Rollback (for changes touching DB, infra, or new services)
+
+If the plan involves migrations, new services, or risky changes:
+- Migration safety: backward-compatible? Zero-downtime?
+- Feature flags: should any part be behind a flag?
+- Rollback plan: explicit step-by-step if this ships and breaks
+
+### 6. Failure Modes Table
 
 For each new codepath, fill in:
 
@@ -107,7 +120,7 @@ ExampleService    | Malformed response  | N        | N     | 500 (silent)    | N
 
 Any row with RESCUED=N, TEST=N, USER SEES=Silent → **CRITICAL GAP**. Flag and specify the fix.
 
-### 6. Test Matrix
+### 7. Test Matrix
 
 Define what needs testing:
 

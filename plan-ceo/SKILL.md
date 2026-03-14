@@ -41,7 +41,12 @@ git diff main --stat
 git stash list
 ```
 
-Search for TODO/FIXME/HACK in the codebase (adjust file patterns for the project). Find recently touched files. Then read any CLAUDE.md, TODOS.md, or architecture docs.
+Search for TODO/FIXME/HACK in the codebase. Examples:
+- Unix/Git Bash: `grep -r "TODO\|FIXME\|HACK" --include="*.ts" --include="*.tsx" --include="*.py" --include="*.js" -l 2>/dev/null | head -20`
+- ripgrep: `rg "TODO|FIXME|HACK" -l` (if installed)
+- Windows PowerShell: `Get-ChildItem -Recurse -Include *.ts,*.tsx,*.py,*.js | Select-String -Pattern "TODO|FIXME|HACK" -List | Select-Object -First 20 -ExpandProperty Path`
+
+Then read any CLAUDE.md, TODOS.md, or architecture docs.
 
 Map:
 - What is the current system state?
@@ -125,6 +130,8 @@ Present three options to the user:
 - User says "go big" / "ambitious" / "cathedral" → EXPANSION, no question
 
 **STOP.** Ask the user which mode they want. Do not proceed until they respond.
+
+When you encounter a genuine decision with meaningful tradeoffs, present 2-3 options (A/B/C), state your recommendation and why, and wait for the user to respond before proceeding.
 
 ## Step 1: Mode-Specific Analysis (after mode selected)
 
