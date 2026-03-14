@@ -7,3 +7,11 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Cursor
+.cursor/
+.agents/
+*.plan.md
+
+# Dependencies (if ever added)
+node_modules/

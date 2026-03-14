@@ -32,6 +32,10 @@ Inspired by [gstack](https://github.com/garrytan/gstack) by Garry Tan (YC). Buil
 You:   I want to add seller photo upload to the listing app. Sellers
        should be able to upload a photo and we create the listing from it.
 
+You:   /researcher  (optional: for unfamiliar domains)
+Cursor: [Research Brief: codebase findings, domain knowledge, tech options,
+        key questions for plan-ceo/plan-eng]
+
 You:   /plan-ceo
 
 Cursor: "Photo upload" is not the feature. The real job is helping sellers
@@ -194,6 +198,18 @@ User describes feature
 
 Without it, plan-eng might create a spec that diverges from the product direction. With it, the technical plan implements exactly what plan-ceo recommended — same scope, same mode (EXPANSION / HOLD / REDUCTION), same deferred work.
 
+**For unfamiliar domains**, run `/researcher` first. Keep the Research Brief in the same chat so plan-ceo and plan-eng can use it. Run researcher when: unfamiliar domains, comparing approaches, large codebase, unclear tradeoffs. Skip when: well-known domain, small change, clear requirements. The researcher SKILL has full "When to Use" and handoff details.
+
+## cursor-stack + Cursor Modes
+
+cursor-stack skills work inside any Cursor mode (Ask, Plan, Agent, Debug). Pick a Cursor mode for the task type, then invoke a skill for the cognitive mode.
+
+- **Cursor Plan mode** (Shift+Tab): Creates implementation plans. Use `/plan-ceo` first to challenge the premise, then Plan mode for the how — or Plan mode for the implementation plan, then `/plan-ceo` for product direction.
+- **Cursor Agent mode**: Building? Run `/review` before merging. Run `/ship` when ready.
+- Skills are discovered from `~/.cursor/skills/` (user) or `.cursor/skills/` / `.agents/skills/` (project). Setup copies to user dir; project install uses project dir.
+
+**Note:** The code-review skill may appear as `/code-review` in Cursor's slash menu. Use `/code-review` or `/review` depending on your Cursor version.
+
 ## Customization
 
 ### Org defaults: Team Rules
@@ -236,12 +252,29 @@ In Cursor, **personas are skills**. Each skill defines a "brain" (mindset, proce
 
 ## Comparison with gstack
 
-| Feature | gstack (Claude Code) | cursor-stack (Cursor) |
-|---------|----------------------|------------------------|
-| Platform | Claude Code | Cursor |
-| Browser QA | Custom ~58MB binary (Bun + Playwright) | Cursor's built-in browser-use |
-| Install | `./setup` builds binary, symlinks | Copy skills, no build |
-| Skills | 8 (includes browse, setup-browser-cookies) | 8 (browse via Cursor native; researcher, workflow) |
+| Dimension | gstack (Claude Code) | cursor-stack (Cursor) |
+|-----------|----------------------|------------------------|
+| **Core philosophy** | One model, many brains | Same |
+| **plan-ceo** | /plan-ceo-review | /plan-ceo — same: 10-star product, three modes |
+| **plan-eng** | /plan-eng-review | /plan-eng — same: architecture, failure modes, diagrams |
+| **review** | Paranoid staff engineer | /code-review — same: production bugs, race conditions |
+| **ship** | Git, tests, PR, Greptile | Git, tests, PR — same core flow (no Greptile in Cursor) |
+| **qa** | Diff-aware, browse binary | Diff-aware, Cursor browser — no 58MB binary |
+| **retro** | Team retro, JSON snapshots | Team retro — same concept |
+| **Pre-planning** | None | /researcher — domain + codebase before plan-ceo |
+| **Workflow** | Manual sequence | /workflow orchestrator — step-by-step guidance |
+| **Browse/cookies** | /browse, /setup-browser-cookies | Cursor native — zero install |
+| **Install** | Bun, build, symlinks | Copy skills — no build, no runtime deps |
+| **Conductor** | 10 parallel sessions | N/A — Cursor single-session today |
+
+### Why cursor-stack is equally good
+
+1. **Same cognitive modes** — founder, tech lead, paranoid reviewer, release engineer
+2. **Simpler install** — copy and go; no binary, no Bun
+3. **Cursor-native** — uses Cursor's browser, Rules, AGENTS.md; no custom config
+4. **Adds researcher** — gstack has no pre-planning skill; researcher fills that gap
+5. **Adds workflow** — gstack has no orchestrator; workflow guides step-by-step
+6. **Platform fit** — Cursor users get the same rigor without leaving Cursor
 
 cursor-stack adapts the gstack philosophy for Cursor. Same cognitive modes, Cursor-native implementation.
 

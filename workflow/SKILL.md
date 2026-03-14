@@ -27,7 +27,7 @@ Full feature flow. Use for new features or significant changes.
 2. **/plan-ceo** — Product direction. Is this the right thing to build?
 3. **/plan-eng** — Technical spec. How should it be built?
 4. **Implement** — User implements the plan. You do not code. User confirms when done.
-5. **/review** — Paranoid code review.
+5. **/code-review** — Paranoid code review. (Cursor may show as /review.)
 6. **/ship** — Land the branch.
 7. **/qa** — Verify it works.
 
@@ -37,7 +37,7 @@ Bug fix flow. Use for fixing bugs.
 
 1. **/plan-eng** *(light)* — Brief technical scope. What needs to change?
 2. **Implement** — User implements. Confirm when done.
-3. **/review** — Paranoid review.
+3. **/code-review** — Paranoid review.
 4. **/ship** — Land the branch.
 5. **/qa** — Verify.
 
@@ -46,7 +46,7 @@ Bug fix flow. Use for fixing bugs.
 Urgent fix flow. Use for production hotfixes.
 
 1. **Implement** — User implements. Confirm when done.
-2. **/review** — Paranoid review.
+2. **/code-review** — Paranoid review.
 3. **/ship** — Land the branch.
 
 ## Orchestration Behavior
@@ -78,7 +78,7 @@ Run these skills in order. After each, confirm completion before proceeding.
 2. /plan-ceo — product direction
 3. /plan-eng — technical spec
 4. [Implement the plan]
-5. /review — paranoid review
+5. /code-review — paranoid review
 6. /ship — land the branch
 7. /qa — verify
 ```
