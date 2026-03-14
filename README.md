@@ -1,0 +1,159 @@
+# cursor-stack
+
+**cursor-stack turns Cursor's AI agent from one generic assistant into a team of specialists you can summon on demand.**
+
+Six opinionated workflow skills for [Cursor](https://cursor.com). Plan review, code review, one-command shipping, QA testing, and engineering retrospectives — all as slash commands.
+
+Inspired by [gstack](https://github.com/garrytan/gstack) by Garry Tan (YC). Built for Cursor — no binaries, no build step, just copy and go.
+
+## Without cursor-stack
+
+- The agent takes your request literally — it never asks if you're building the right thing
+- "Review my PR" gives inconsistent depth every time
+- "Ship this" turns into a long back-and-forth about what to do
+- You still do QA by hand: open browser, click around, check pages
+
+## With cursor-stack
+
+| Skill | Mode | What it does |
+|-------|------|--------------|
+| `/plan-ceo` | Founder / CEO | Rethink the problem. Find the 10-star product hiding inside the request. Three modes: EXPANSION, HOLD, REDUCTION. |
+| `/plan-eng` | Eng manager / tech lead | Lock in architecture, data flow, diagrams, edge cases, and tests. |
+| `/review` | Paranoid staff engineer | Find the bugs that pass CI but blow up in production. |
+| `/ship` | Release engineer | Sync main, run tests, push, open PR. For a ready branch, not for deciding what to build. |
+| `/qa` | QA lead | Systematic QA testing. Diff-aware, full exploration, quick smoke test. Uses Cursor's built-in browser automation. |
+| `/retro` | Engineering manager | Team-aware retro: your deep-dive + per-person praise and growth opportunities. |
+
+## Demo: one feature, five modes
+
+```
+You:   I want to add seller photo upload to the listing app. Sellers
+       should be able to upload a photo and we create the listing from it.
+
+You:   /plan-ceo
+
+Cursor: "Photo upload" is not the feature. The real job is helping sellers
+        create listings that actually sell. The 10-star version: auto-identify
+        the product from the photo, pull specs from the web, draft the title
+        and description, suggest the best hero image...
+
+You:   /plan-eng
+
+Cursor: [Architecture diagram, state machine for upload → classify → enrich
+        → draft pipeline, edge cases, test matrix]
+
+You:   [implement the plan]
+
+You:   /review
+
+Cursor: Race condition: two tabs can overwrite cover-photo selection.
+        Trust boundary: pulling web data into draft generation creates
+        a prompt injection vector. Missing: orphan cleanup for failed uploads.
+
+You:   (fix the issues)
+
+You:   /ship
+
+Cursor: [Syncs main, runs tests, pushes branch, opens PR — done]
+
+You:   /qa
+
+Cursor: Analyzing branch diff... 8 files changed, 3 routes affected.
+        [Tests affected pages via browser-use]
+        All 3 routes working. Upload + enrichment flow passes end to end.
+```
+
+## Who this is for
+
+You already use Cursor heavily and want consistent, high-rigor workflows instead of one mushy generic mode. You want to tell the model what kind of brain to use right now — founder taste, engineering rigor, paranoid review, or fast execution.
+
+This is not a prompt pack for beginners. It is an operating system for people who ship.
+
+## Install
+
+**Requirements:** [Cursor](https://cursor.com) with Agent/Skills support.
+
+### Option A: Clone to skills directory (recommended)
+
+```bash
+# Clone into your Cursor skills folder
+git clone https://github.com/Himanshu-Sangshetti/cursor-stack.git ~/.cursor/skills/cursor-stack
+
+# Copy each skill so Cursor discovers them (skills must be direct children of ~/.cursor/skills/)
+# Run the setup script, or manually:
+cp -r ~/.cursor/skills/cursor-stack/plan-ceo ~/.cursor/skills/
+cp -r ~/.cursor/skills/cursor-stack/plan-eng ~/.cursor/skills/
+cp -r ~/.cursor/skills/cursor-stack/code-review ~/.cursor/skills/
+cp -r ~/.cursor/skills/cursor-stack/ship ~/.cursor/skills/
+cp -r ~/.cursor/skills/cursor-stack/qa ~/.cursor/skills/
+cp -r ~/.cursor/skills/cursor-stack/retro ~/.cursor/skills/
+```
+
+### Option B: Run setup script
+
+**macOS / Linux:**
+```bash
+git clone https://github.com/Himanshu-Sangshetti/cursor-stack.git /tmp/cursor-stack
+cd /tmp/cursor-stack
+./setup
+```
+
+**Windows (PowerShell):**
+```powershell
+git clone https://github.com/Himanshu-Sangshetti/cursor-stack.git $env:TEMP\cursor-stack
+cd $env:TEMP\cursor-stack
+.\setup.ps1
+```
+
+### Option C: Project-level install (share with teammates)
+
+Copy the `cursor-stack` folder into your project's `.cursor/skills/` directory:
+
+```bash
+mkdir -p .cursor/skills
+git clone https://github.com/Himanshu-Sangshetti/cursor-stack.git .cursor/skills/cursor-stack
+# Then copy skills as in Option A, but to .cursor/skills/ in your project
+```
+
+## How to use
+
+Just mention the skill name in your Cursor chat:
+
+- "Use plan-ceo to review this feature idea"
+- "Use plan-eng to create the technical spec"
+- "/review" or "Use code-review on my changes"
+- "/ship" or "Use ship to land this branch"
+- "/qa" or "Use qa to test localhost:3000"
+- "/retro" or "Use retro for the last week"
+
+Cursor will automatically read the skill and follow its instructions.
+
+## Your workflow
+
+1. **Describe** the feature idea
+2. **`/plan-ceo`** — Is this the right thing to build?
+3. **`/plan-eng`** — How should it be built?
+4. **Implement** the plan
+5. **`/review`** — Find hidden bugs
+6. **`/ship`** — Land the code
+7. **`/qa`** — Verify it works
+
+## Comparison with gstack
+
+| Feature | gstack (Claude Code) | cursor-stack (Cursor) |
+|---------|----------------------|------------------------|
+| Platform | Claude Code | Cursor |
+| Browser QA | Custom ~58MB binary (Bun + Playwright) | Cursor's built-in browser-use |
+| Install | `./setup` builds binary, symlinks | Copy skills, no build |
+| Skills | 8 (includes browse, setup-browser-cookies) | 6 (browse via Cursor native) |
+
+cursor-stack adapts the gstack philosophy for Cursor. Same cognitive modes, Cursor-native implementation.
+
+## Credits
+
+- Inspired by [gstack](https://github.com/garrytan/gstack) by [Garry Tan](https://x.com/garrytan), President & CEO of Y Combinator
+- Built for the Cursor community
+
+## License
+
+MIT

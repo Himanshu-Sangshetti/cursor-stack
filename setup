@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+# cursor-stack setup — copy skills to ~/.cursor/skills/
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+SKILLS_DIR="${CURSOR_SKILLS_DIR:-$HOME/.cursor/skills}"
+
+echo "cursor-stack setup"
+echo "  Source: $SCRIPT_DIR"
+echo "  Target: $SKILLS_DIR"
+echo ""
+
+mkdir -p "$SKILLS_DIR"
+
+for skill in plan-ceo plan-eng code-review ship qa retro; do
+  if [ -d "$SCRIPT_DIR/$skill" ] && [ -f "$SCRIPT_DIR/$skill/SKILL.md" ]; then
+    cp -r "$SCRIPT_DIR/$skill" "$SKILLS_DIR/"
+    echo "  Installed: $skill"
+  fi
+done
+
+echo ""
+echo "Done. Restart Cursor or open a new chat to use the skills."
+echo ""
+echo "Try: /plan-ceo, /plan-eng, /review, /ship, /qa, /retro"
