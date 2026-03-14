@@ -1,4 +1,4 @@
-# cursor-stack setup — copy skills to ~/.cursor/skills/
+# cursor-stack setup: copy skills to ~/.cursor/skills/
 $ErrorActionPreference = "Stop"
 
 $ScriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path

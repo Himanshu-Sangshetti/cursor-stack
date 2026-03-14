@@ -6,7 +6,7 @@ Flow for fixing bugs.
 
 1. **/plan-eng** *(light)* — Brief technical scope. What needs to change? Minimal spec.
 2. **Implement** — Implement the fix.
-3. **/review** — Paranoid review.
+3. **/code-review** — Paranoid review. (Cursor may show as /review.)
 4. **/ship** — Land the branch.
 5. **/qa** — Verify the fix.
 

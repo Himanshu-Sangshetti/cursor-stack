@@ -8,7 +8,7 @@ Full flow for new features or significant changes.
 2. **/plan-ceo** — Product direction. Is this the right thing to build? Three modes: EXPANSION, HOLD, REDUCTION.
 3. **/plan-eng** — Technical spec. How should it be built? Architecture, data flow, failure modes.
 4. **Implement** — Implement the plan. Keep plan-ceo and plan-eng output in the same chat.
-5. **/review** — Paranoid code review. Find bugs that pass CI but break in production.
+5. **/code-review** — Paranoid code review. (Cursor may show as /review.) Find bugs that pass CI but break in production.
 6. **/ship** — Land the branch. Sync main, run tests, push, open PR.
 7. **/qa** — Verify it works. Use Cursor's browser automation if applicable.
 

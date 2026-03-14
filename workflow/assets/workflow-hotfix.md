@@ -5,7 +5,7 @@ Urgent flow for production hotfixes.
 ## Steps
 
 1. **Implement** — Implement the fix.
-2. **/review** — Paranoid review.
+2. **/code-review** — Paranoid review. (Cursor may show as /review.)
 3. **/ship** — Land the branch.
 
 ## Usage
